@@ -25,10 +25,61 @@ object Cipher{
     }
     result
   }
-
+  def checkRepetitionAtPos(keyChars: Array[Char], j: Int) : Boolean = {
+  val K = keyChars.size
+    for(i <- 0 until (K-j)) {
+    println("accessing index")
+    println(i)
+    println(j)
+      if(keyChars(i) != keyChars(i+j)) false
+    }
+    true
+  }
+  def checkRepetition(keyChars: Array[Char]) : (Boolean, Int) = {
+    val K = keyChars.size
+    for(j <- 0 until (K-1)) {
+      if(checkRepetitionAtPos(keyChars, j)) (true, j)
+    }
+    (false, -1)
+  }
   /** Try to decrypt ciphertext, using crib as a crib */
-  def tryCrib(crib: Array[Char], ciphertext: Array[Char]) : Unit = ???
-
+  def tryCrib(crib: Array[Char], ciphertext: Array[Char]) : Unit = {
+    val N = ciphertext.size
+    val K = crib.size
+    println(N)
+    println(K)
+    for(start <- 0 to (N-K)) {
+     	var keyChars = new Array[Char](K)
+    	for(i <- start until (start+K)){
+    	  keyChars(i) = xor(ciphertext(i), crib(i))
+    	}
+    	println("Do i ever get here?")
+    	val ans = checkRepetition(keyChars)
+    	println("Do i pass to here?")
+    	if(ans._1) {
+    	  val j = ans._2
+    	  val keyLen = j
+    	  var keyStartIndex = 0
+    	  if (start % j == 0) {
+    	    keyStartIndex = 0
+    	  } else {
+    	    keyStartIndex = j - (start % j)
+    	  }
+    	  if((K - keyStartIndex) >= j) {
+    	    var key = keyChars.slice(keyStartIndex, keyStartIndex+j)
+    	    for(c <- key) print(c)
+    	  } else { 
+    	    var key = keyChars.slice(keyStartIndex, K) 
+    	    for(c <- keyChars.slice(K-j, keyStartIndex)) key :+ c
+    	    for(c <- key) print(c)
+    	  }
+    	  // uzmi od keyStartIndexa desno j stvari. Ako preletis K-1 (inclusive, onda kreni od K-j (inclusive) uzimaj nadalje dok ne ispunis kvotu od j.
+    	  // keyChars[K-j, K) DOLFRUDOL K=9, K-j = 3 [0,3) = [6,9) start = 7 i tu je 0 1 2 3 4 5 6 7 start % j so U je na indeksu 1 u kljucu
+    	  // nadji prvi indeks poslije start koji je djeljiv sa j. odatle ti pocinje kljuc. kupi iz keyChars odatle nadalje i udari krug ako ima potrebe
+    	}
+    }
+  }
+  
   /** The first optional statistical test, to guess the length of the key */
   def crackKeyLen(ciphertext: Array[Char]) : Unit = ???
 
