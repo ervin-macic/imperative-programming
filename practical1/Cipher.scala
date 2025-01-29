@@ -19,9 +19,9 @@ object Cipher{
   def encrypt(key: Array[Char], plain: Array[Char]) : Array[Char] = {
     val plainLen = plain.size
     val keyLen = key.size
-    var result = new String(plainLen)
-    for(i <- 1 until plainLen) {
-      result(i) = plain(i) ^ key(i % k)
+    var result = new Array[Char](plainLen)
+    for(i <- 0 until plainLen) {
+      result(i) = xor(plain(i), key(i % keyLen))
     }
     result
   }
