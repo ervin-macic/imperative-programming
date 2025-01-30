@@ -6,6 +6,9 @@ object InputOutput {
         var check = Array[Int](3) // wtf, this is [3]??
         var wtf = Array[Int](7,5)
         var noType = Array(1,4.2,9,16)
+        var arr2 = args.map(_.toInt)
+        var charArr = Array[Char](65, 66, 67) // legal, conversion happens
+        var xs = 1 to 10 // this is legal, 1 to 10 inclusive
         println(check(0)) // 3
         println(wtf(0))   // 7
         println(wtf(1))   // 5
