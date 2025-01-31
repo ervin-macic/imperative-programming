@@ -1,5 +1,5 @@
 object Milk {
-    def findSum(a: Array[Int]): Int = {
+    def findSum(a: Array[Int]): Long = {
         val n = a.size
         // I mean technically if no args are passed it returns 0 correctly so I wouldn't require n > 0
         var total = 0 // If the bill is huge, might make sense for total to be a long datatype
@@ -10,7 +10,6 @@ object Milk {
         }
         total
     }
-
     def main(args: Array[String]) = {
         val n = args.size
         // check whether n is at least 1 and print an error message if not
@@ -21,20 +20,9 @@ object Milk {
 }
 
 object BetterMilk {
-    def findSum(a: Array[Int]): Int = {
-        val n = a.size
-        var total = 0L
-        var i = 0
-        while (i < n) {
-            total += a(i)
-            i += 1
-        }
-        total
-    }
-
+    def findSum(a: Array[Int]): Long = a.foldLeft(0L)(_ + _)
     def main(args: Array[String]) = {
-        val n = args.size
-        require(n > 0, "Error: At least one argument is required.")
+        require(args.size > 0, "Error: At least one argument is required.")
         val a = args.map(_.toInt)
         println("The total bill is: " + findSum(a))
     }
