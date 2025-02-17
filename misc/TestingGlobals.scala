@@ -1,0 +1,3 @@
+object globals{
+    def main
+}

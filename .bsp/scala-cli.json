@@ -1,0 +1,20 @@
+{
+  "name": "scala-cli",
+  "argv": [
+    "/home/ervin/.local/share/coursier/bin/.scala-cli.aux",
+    "bsp",
+    "--json-options",
+    "/home/ervin/coding/imperative-programming/.scala-build/ide-options-v2.json",
+    "--json-launcher-options",
+    "/home/ervin/coding/imperative-programming/.scala-build/ide-launcher-options.json",
+    "--envs-file",
+    "/home/ervin/coding/imperative-programming/.scala-build/ide-envs.json",
+    "/home/ervin/coding/imperative-programming/q5test.scala"
+  ],
+  "version": "1.6.1",
+  "bspVersion": "2.1.1",
+  "languages": [
+    "scala",
+    "java"
+  ]
+}
