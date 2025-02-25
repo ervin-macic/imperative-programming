@@ -89,8 +89,8 @@ class IntSet{
         } else { // otherwise insert at head
           theSet = newNode
         }
+        len += 1
       }
-      len += 1
     }
   }
 
@@ -134,8 +134,9 @@ class IntSet{
   /** Remove x from the set; result says whether x was in the set initially
     * Post S = S_0 - {x} && returns (x in S_0) */
   def remove(x: Int) : Boolean = {
+    if(isEmpty) return false
     val (prev, curr) = find(x)
-    if(isEmpty || curr == null || curr.value != x) return false 
+    if(curr == null || curr.value != x) return false 
     // curr >= x, (prev < x or prev == null)
     if(prev == null) {
       theSet = theSet.next
@@ -175,105 +176,129 @@ class IntSet{
   // ----- optional parts below here -----
 
   /** Creates a deep copy */
-  def copyFrom(that: IntSet) : Unit = {
-    require(size >= that.size, "Can't copy a larger set into a smaller one")
-    var thatCurr: Node = that.theSet 
-    var thisCurr: Node = theSet 
-    var prev: Node = null
-    while (thatCurr != null) {
-      thisCurr.value = thatCurr.value 
-      prev = thisCurr
-      thisCurr = thisCurr.next
-      thatCurr = thatCurr.next
-    }
-    if (prev != null) prev.next = null
-  }
-
-def union(that: IntSet): IntSet = {
-  if (isEmpty) return that
-  if (that.isEmpty) return this
-  val union = new IntSet
-  var currThisSet: Node = theSet
-  var currThatSet: Node = that.theSet
-  var lastUnionNode: Node = null
-  var unionEmpty = true
-  def appendToEnd(value: Int): Unit = {
-    val newNode = new Node(value, null)
-    if (unionEmpty) {
-      union.theSet = newNode
-      unionEmpty = false
+  def copyFrom(that: IntSet): Unit = {
+  theSet = null
+  len = 0
+  if (that.isEmpty) return
+  var thatCurr: Node = that.theSet
+  var head: Node = null
+  var prev: Node = null
+  while (thatCurr != null) {
+    val newNode = new Node(thatCurr.value, null)
+    if (head == null) {
+      head = newNode
     } else {
-      lastUnionNode.next = newNode
+      prev.next = newNode
     }
-    lastUnionNode = newNode
+    prev = newNode
+    thatCurr = thatCurr.next
   }
-  // Continue while both lists have elements
-  while (currThisSet != null && currThatSet != null) {
-    if (currThisSet.value < currThatSet.value) {
+  theSet = head
+  len = that.len
+}
+
+  def union(that: IntSet): IntSet = {
+    if (isEmpty) return that
+    if (that.isEmpty) return this
+    val union = new IntSet
+    var currThisSet: Node = theSet
+    var currThatSet: Node = that.theSet
+    var lastUnionNode: Node = null
+    var unionEmpty = true
+    def appendToEnd(value: Int): Unit = {
+      val newNode = new Node(value, null)
+      if (unionEmpty) {
+        union.theSet = newNode
+        unionEmpty = false
+      } else {
+        lastUnionNode.next = newNode
+      }
+      lastUnionNode = newNode
+      union.len += 1
+    }
+    // Continue while both lists have elements
+    while (currThisSet != null && currThatSet != null) {
+      if (currThisSet.value < currThatSet.value) {
+        appendToEnd(currThisSet.value)
+        currThisSet = currThisSet.next
+      } else if (currThisSet.value > currThatSet.value) {
+        appendToEnd(currThatSet.value)
+        currThatSet = currThatSet.next
+      } else { // Equal values
+        appendToEnd(currThisSet.value)
+        currThisSet = currThisSet.next
+        currThatSet = currThatSet.next
+      }
+    }
+    // Process remaining elements if there are any
+    while (currThisSet != null) {
       appendToEnd(currThisSet.value)
       currThisSet = currThisSet.next
-    } else if (currThisSet.value > currThatSet.value) {
+    }
+    while (currThatSet != null) {
       appendToEnd(currThatSet.value)
       currThatSet = currThatSet.next
-    } else { // Equal values
-      appendToEnd(currThisSet.value)
-      currThisSet = currThisSet.next
-      currThatSet = currThatSet.next
     }
+    union
   }
-  // Process remaining elements if there are any
-  while (currThisSet != null) {
-    appendToEnd(currThisSet.value)
-    currThisSet = currThisSet.next
-  }
-  while (currThatSet != null) {
-    appendToEnd(currThatSet.value)
-    currThatSet = currThatSet.next
-  }
-  union
-}
 
   /** return intersection of this and that.  
     * Post: S = S_0 && returns res s.t. res.S = this intersect that.S */
-  def intersect(that: IntSet) : IntSet = ???
+  def intersect(that: IntSet) : IntSet = {
+    if(isEmpty || that.isEmpty) return new IntSet
+    val intersection = new IntSet
+    var currThisSet: Node = theSet
+    var currThatSet: Node = that.theSet
+    var lastIntersectionNode: Node = null
+    var intersectionEmpty = true
+    def appendToEnd(value: Int): Unit = {
+      val newNode = new Node(value, null)
+      if (intersectionEmpty) {
+        intersection.theSet = newNode
+        intersectionEmpty = false
+      } else {
+        lastIntersectionNode.next = newNode
+      }
+      lastIntersectionNode = newNode
+      intersection.len += 1
+    }
+    // Continue while both lists have elements
+    while (currThisSet != null && currThatSet != null) {
+      if (currThisSet.value < currThatSet.value) {
+        currThisSet = currThisSet.next
+      } else if (currThisSet.value > currThatSet.value) {
+        currThatSet = currThatSet.next
+      } else { // Equal values
+        appendToEnd(currThisSet.value)
+        currThisSet = currThisSet.next
+        currThatSet = currThatSet.next
+      }
+    }
+    intersection
+  }
 
   /** map
     * Post: S = S_0 && returns res s.t. res.S = {f(x) | x <- S} */
   def map(f: Int => Int): IntSet = {
-    if(isEmpty) return new IntSet
-    var newSet = new IntSet
-    var lastNode: Node = null
-    var currThis: Node = theSet
-    while(currThis != null) {
-      val newNode = new Node(f(currThis.value), null)
-      if(newSet.isEmpty) {
-        newSet.theSet = newNode
-      } else {
-        lastNode.next = newNode
-      }
-
-      lastNode = newNode
-      currThis = currThis.next
-    }
-    return newSet
+  if(isEmpty) return new IntSet
+  var newSet = new IntSet
+  var currThis: Node = theSet
+  while(currThis != null) {
+    newSet.add(f(currThis.value))
+    currThis = currThis.next
   }
+  return newSet
+}
 
   /** filter
     * Post: S = S_0 && returns res s.t. res.S = {x | x <- S && p(x)} */
-  def filter(p : Int => Boolean) : IntSet = {
+  def filter(p: Int => Boolean): IntSet = {
     if(isEmpty) return new IntSet
     var newSet = new IntSet
-    var lastNode: Node = null
     var currThis: Node = theSet
     while(currThis != null) {
       if(p(currThis.value)) {
-        val newNode = new Node(currThis.value, null)
-        if(newSet.isEmpty) {
-          newSet.theSet = newNode
-        } else {
-          lastNode.next = newNode
-        }
-        lastNode = newNode
+        newSet.add(currThis.value)
       }
       currThis = currThis.next
     }
@@ -324,5 +349,6 @@ def main(args: Array[String]) : Unit = {
   println(set)
   println(set2)
   println(set.union(set2))
+  println(set.intersect(set2))
 }
 }
