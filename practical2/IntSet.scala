@@ -4,14 +4,16 @@ object Main{
 
 /*
 • Do you use a dummy header node?
-Yes, a dummy header node is necessary to be able to represent an empty 
+No, a dummy header node is not necessary to be able to represent an empty 
 set.
 • Can your linked list store the same integer several times, or do you
 avoid repetitions?
 I avoid repetition since this should represent a set.
 • Do you store the elements of the set in increasing order?
-If I use additional memory, I don't need to.
+If I use additional memory, I don't need to. But I do store them in increasing order
+to ease the operations like union, find etc.
 • Do you include anything else in your state, for efficiency?
+I include an integer len which keeps track of the number of elements in the set.
 */
 
 /**
@@ -30,8 +32,7 @@ class IntSet{
   // Init: S = {}
   private var theSet : Node = null // or however empty set is represented
 
-  /** Convert the set to a string.
-    * (The given implementation is not sufficient.) */
+  /** Convert the set to a string. */
   override def toString : String = {
     var st = "{"
     var curr: Node = theSet
@@ -50,24 +51,26 @@ class IntSet{
   /** Check whether the set is empty
     * Post: S = S_0 && returns (#S == 0) */
   private def isEmpty = len == 0
+
   /** Length of the list
     * Post: S = S_0 && returns #S */
   def size : Int = len
 
   /** Find the node before where x should be inserted.
-  * post: (prev, curr) where prev is the last node <= x
-  * and curr is the node after prev */
+  * pre: set != {}
+  * post: (prev, curr) where prev is the last node <= x, curr is either null or the first 
+  element greater than x. and curr is the node after prev */
   private def find(x: Int) : (Node, Node) = {
-    if(isEmpty) return (null, null)
+    require(!isEmpty, "The set is empty!")
     var prev: Node = null
     var curr: Node = theSet
-    // Invariant: prev <= x
+    // Invariant: prev < x
     // for all n1 in L(list, n), n1.value != x
     while(curr != null && curr.value < x) {
       prev = curr
       curr = curr.next
     }
-    // curr == null or curr.value >= x here
+    // (curr == null xor curr.value >= x) && prev < x
     (prev, curr)
   }
 
@@ -81,7 +84,7 @@ class IntSet{
       val (prev, curr) = find(x)
       if(curr == null || curr.value != x) { // only insert if x is not present
         val newNode = new Node(x, curr)
-        if(prev != null) {
+        if(prev != null) { // shouldn't be inserted at the front of the list
           prev.next = newNode
         } else { // otherwise insert at head
           theSet = newNode
@@ -94,19 +97,19 @@ class IntSet{
   /** Does the set contain x?
     * Post: S = S_0 && returns (x in S) */
   def contains(x: Int) : Boolean = {
+    if(isEmpty) return false
     val (prev, curr) = find(x)
     return (curr != null && curr.value == x)
   }
 
-  /** Return any member of the set.  (This is comparable to the operation
-    * "head" on scala.collection.mutable.Set, but we'll use a name that does
-    * not suggest a particular order.)
+  /** Return any member of the set. 
     * Pre: S != {}
     * Post: S = S_0 && returns e s.t. e in S */
   def any : Int = {
     require(!isEmpty, "The set is empty; you're silly for trying this")
     return theSet.value
   }
+
   /** Compare two sets for equality
     * Post: return true if sets have identical elements */
   def compareSets(s: IntSet) : Boolean = {
@@ -120,6 +123,7 @@ class IntSet{
     }
     return true
   }
+
   /** Does this equal that?
     * Post: S = S_0 && returns that.S = S */
   override def equals(that: Any) : Boolean = that match {
@@ -170,17 +174,64 @@ class IntSet{
 
   // ----- optional parts below here -----
 
-  /** return union of this and that.  
-    * Post: S = S_0 && returns res s.t. res.S = this U that.S */
-  def union(that: IntSet) : IntSet = {
-    var union: Node = theSet 
-    var thatSet: Node = that.theSet 
-    var thisSet: Node = theSet 
-    while(thatSet != null && thisSet != null) {
-
+  /** Creates a deep copy */
+  def copyFrom(that: IntSet) : Unit = {
+    require(size >= that.size, "Can't copy a larger set into a smaller one")
+    var thatCurr: Node = that.theSet 
+    var thisCurr: Node = theSet 
+    var prev: Node = null
+    while (thatCurr != null) {
+      thisCurr.value = thatCurr.value 
+      prev = thisCurr
+      thisCurr = thisCurr.next
+      thatCurr = thatCurr.next
     }
-    return null
+    if (prev != null) prev.next = null
   }
+
+def union(that: IntSet): IntSet = {
+  if (isEmpty) return that
+  if (that.isEmpty) return this
+  val union = new IntSet
+  var currThisSet: Node = theSet
+  var currThatSet: Node = that.theSet
+  var lastUnionNode: Node = null
+  var unionEmpty = true
+  def appendToEnd(value: Int): Unit = {
+    val newNode = new Node(value, null)
+    if (unionEmpty) {
+      union.theSet = newNode
+      unionEmpty = false
+    } else {
+      lastUnionNode.next = newNode
+    }
+    lastUnionNode = newNode
+  }
+  // Continue while both lists have elements
+  while (currThisSet != null && currThatSet != null) {
+    if (currThisSet.value < currThatSet.value) {
+      appendToEnd(currThisSet.value)
+      currThisSet = currThisSet.next
+    } else if (currThisSet.value > currThatSet.value) {
+      appendToEnd(currThatSet.value)
+      currThatSet = currThatSet.next
+    } else { // Equal values
+      appendToEnd(currThisSet.value)
+      currThisSet = currThisSet.next
+      currThatSet = currThatSet.next
+    }
+  }
+  // Process remaining elements if there are any
+  while (currThisSet != null) {
+    appendToEnd(currThisSet.value)
+    currThisSet = currThisSet.next
+  }
+  while (currThatSet != null) {
+    appendToEnd(currThatSet.value)
+    currThatSet = currThatSet.next
+  }
+  union
+}
 
   /** return intersection of this and that.  
     * Post: S = S_0 && returns res s.t. res.S = this intersect that.S */
@@ -188,11 +239,46 @@ class IntSet{
 
   /** map
     * Post: S = S_0 && returns res s.t. res.S = {f(x) | x <- S} */
-  def map(f: Int => Int) : IntSet = ???
+  def map(f: Int => Int): IntSet = {
+    if(isEmpty) return new IntSet
+    var newSet = new IntSet
+    var lastNode: Node = null
+    var currThis: Node = theSet
+    while(currThis != null) {
+      val newNode = new Node(f(currThis.value), null)
+      if(newSet.isEmpty) {
+        newSet.theSet = newNode
+      } else {
+        lastNode.next = newNode
+      }
+
+      lastNode = newNode
+      currThis = currThis.next
+    }
+    return newSet
+  }
 
   /** filter
     * Post: S = S_0 && returns res s.t. res.S = {x | x <- S && p(x)} */
-  def filter(p : Int => Boolean) : IntSet = ???
+  def filter(p : Int => Boolean) : IntSet = {
+    if(isEmpty) return new IntSet
+    var newSet = new IntSet
+    var lastNode: Node = null
+    var currThis: Node = theSet
+    while(currThis != null) {
+      if(p(currThis.value)) {
+        val newNode = new Node(currThis.value, null)
+        if(newSet.isEmpty) {
+          newSet.theSet = newNode
+        } else {
+          lastNode.next = newNode
+        }
+        lastNode = newNode
+      }
+      currThis = currThis.next
+    }
+    return newSet
+  }
 }
 
 
@@ -233,6 +319,10 @@ def main(args: Array[String]) : Unit = {
   val set2 = IntSet(10,30)
   println(set.subsetOf(set2))
   println(set2.subsetOf(set))
-
+  println(set.betterSubsetOf(set2))
+  println(set2.betterSubsetOf(set))
+  println(set)
+  println(set2)
+  println(set.union(set2))
 }
 }
