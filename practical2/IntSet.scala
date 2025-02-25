@@ -17,8 +17,8 @@ I include an integer len which keeps track of the number of elements in the set.
 */
 
 /**
-Abs:
-DTI:  
+Abs: {x | x is any integer sorted in linked list} 
+DTI: (for all x,y in S, x != y) && (len == #S) && (for all nodes u,v : u.next = v => u.value < v.value)
 */
 class IntSet{
   // State: S : P(Int) (where "P" represents power set)
@@ -36,6 +36,7 @@ class IntSet{
   override def toString : String = {
     var st = "{"
     var curr: Node = theSet
+    // I: curr != null && st = "{a1, a2, ... , an, " where an == curr.value (nth node of linked list)
     while(curr != null) {
       val nextNode = curr.next
       if(nextNode != null) {
@@ -280,15 +281,15 @@ class IntSet{
   /** map
     * Post: S = S_0 && returns res s.t. res.S = {f(x) | x <- S} */
   def map(f: Int => Int): IntSet = {
-  if(isEmpty) return new IntSet
-  var newSet = new IntSet
-  var currThis: Node = theSet
-  while(currThis != null) {
-    newSet.add(f(currThis.value))
-    currThis = currThis.next
+    if(isEmpty) return new IntSet
+    var newSet = new IntSet
+    var currThis: Node = theSet
+    while(currThis != null) {
+      newSet.add(f(currThis.value))
+      currThis = currThis.next
+    }
+    return newSet
   }
-  return newSet
-}
 
   /** filter
     * Post: S = S_0 && returns res s.t. res.S = {x | x <- S && p(x)} */
@@ -325,30 +326,6 @@ object IntSet{
 def main(args: Array[String]) : Unit = {
   val set = IntSet(10,2,4,2,5,2)
   println(set)
-  set.remove(10)
-  println(set)
-  set.add(10)
-  println(set)
-  println(set.contains(17))
-  println(set.contains(2))
-  set.remove(2)
-  set.remove(4)
-  set.remove(5)
-  set.remove(10)
-  println(set)
-  set.add(10)
-  println(set)
-  set.add(20)
-  set.add(30)
-  set.add(40)
-  val set2 = IntSet(10,30)
-  println(set.subsetOf(set2))
-  println(set2.subsetOf(set))
-  println(set.betterSubsetOf(set2))
-  println(set2.betterSubsetOf(set))
-  println(set)
-  println(set2)
-  println(set.union(set2))
-  println(set.intersect(set2))
+  
 }
 }

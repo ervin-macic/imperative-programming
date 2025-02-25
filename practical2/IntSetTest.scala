@@ -7,8 +7,11 @@ import scala.collection.mutable.HashSet
 import Main._
 
 class IntSetTest extends AnyFunSuite {
-
-  test("1. Add elements and check size") {
+  test("0. toString function outputs correct string for simple example") {
+    val set = IntSet(1,2,3)
+    assert(set.toString == "{1, 2, 3}")
+  }
+  test("1. Add duplicate elements and check size") {
     val set = new IntSet
     assert(set.size == 0)
     set.add(5)
@@ -19,7 +22,7 @@ class IntSetTest extends AnyFunSuite {
     assert(set.size == 2)
   }
 
-  test("2. Check if set contains elements") {
+  test("2. Check if set contains elements properly") {
     val set = new IntSet
     set.add(4)
     set.add(10)
