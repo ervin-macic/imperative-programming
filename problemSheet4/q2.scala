@@ -15,7 +15,6 @@ val r2: RayTracingRenderer = new RayTracingRenderer
 r2.accept(a) // Accepted for ray-trace rendering.
 
 /*
-method overloading and method overriding 
 ========================================
 r1 has static type Renderer and dynamic (runtime) type RayTracingRenderer which matters for overriding (only).
 The compiler searches Renderer (since static type is Renderer) 

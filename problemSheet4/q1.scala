@@ -75,3 +75,4 @@ I chose not to derive a square from a rectangle (even though mathematically it m
 setWidth and setHeight on a square would induce potentially unexpected behaviour (i.e. would either turn a square into a 
 rectangle or change both the height and width of the square). Same for ellipse and circle.
 I chose to have an abstract class Shape so that I can have lists of these shapes.
+*/
