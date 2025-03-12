@@ -1,0 +1,100 @@
+2025.03.12 15:24:41 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:24:42 INFO  Attempting to connect to the build server...[0m
+Mar 12, 2025 3:24:44 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+Mar 12, 2025 3:25:36 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+WARNING: Unsupported notification method: metals/windowStateDidChange
+Mar 12, 2025 3:28:08 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+WARNING: Unsupported notification method: metals/windowStateDidChange
+2025.03.12 15:28:08 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:08 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:09 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:08 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:10 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:12 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:13 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:13 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:13 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:14 INFO  Shutting down server[0m
+2025.03.12 15:28:14 INFO  shutting down Metals[0m
+2025.03.12 15:28:14 ERROR Failed to connect with build server, no functionality will work.
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:220)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:204)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:840)
+[0m
+2025.03.12 15:28:14 INFO  Exiting server[0m
+2025.03.12 15:28:25 INFO  Started: Metals version 1.5.1 in folders '/home/ervin/coding/imperative-programming' for client Visual Studio Code 1.98.1.[0m
+2025.03.12 15:28:30 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:30 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  Attempting to connect to the build server...[0m
+Mar 12, 2025 3:28:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+Mar 12, 2025 3:28:31 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Mar 12, 2025 3:28:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+Mar 12, 2025 3:28:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+Mar 12, 2025 3:28:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 6
+Mar 12, 2025 3:28:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 14
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+Mar 12, 2025 3:28:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 19
+Mar 12, 2025 3:28:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 20
+Mar 12, 2025 3:28:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 17
+2025.03.12 15:28:31 WARN  no build target for: /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala[0m
+Mar 12, 2025 3:28:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 21
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:31 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:32 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:33 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:33 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:33 WARN  no build target for: /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala[0m
+2025.03.12 15:28:33 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+Mar 12, 2025 3:28:36 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2025.03.12 15:28:36 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:37 ERROR Failed to connect with build server, no functionality will work.
+scala.concurrent.Future$$anon$2: Future.filter predicate is not satisfied
+[0m
+2025.03.12 15:28:37 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:38 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+Mar 12, 2025 3:28:38 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Mar 12, 2025 3:28:46 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2025.03.12 15:28:55 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:55 INFO  no build target found for /home/ervin/coding/imperative-programming/problemSheet6/q7b.scala. Using presentation compiler with project's scala-library version: 3.3.4[0m
+2025.03.12 15:28:58 INFO  Shutting down server[0m
+2025.03.12 15:28:58 INFO  shutting down Metals[0m
+2025.03.12 15:28:58 INFO  Exiting server[0m
